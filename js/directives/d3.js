@@ -1,5 +1,6 @@
 // D3 visualization
 // TODO: D3 as a service
+
 angular.module('panelApp').directive('batD3', function () {
   return {
     restrict: 'E',
@@ -95,7 +96,6 @@ angular.module('panelApp').directive('batD3', function () {
               imports.push({source: map[d.name], target: map[i]});
             });
           });
-
           return imports;
         }
       };
@@ -145,6 +145,7 @@ angular.module('panelApp').directive('batD3', function () {
           }
         }
         classes = newVal.slice(0);
+		console.log("classes", classes);
         classes.sort(function (a, b) {
           return .5 - (a.name < b.name);
         });
