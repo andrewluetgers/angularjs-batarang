@@ -10,7 +10,7 @@ angular.module('panelApp').factory('appStructure', function (chromeExtension, ap
 
 		return {
 			get: function (callback) {
-				chromeExtension.eval(function (window) {
+				(function() {chromeExtension.eval(function (window) {
 						if (window.__ngDebug) {
 							return window.__ngDebug.getStructure();
 						}
@@ -21,6 +21,7 @@ angular.module('panelApp').factory('appStructure', function (chromeExtension, ap
 						}
 						callback(_depsCache);
 					});
+				}());
 			}
-		};
+		}
 	});

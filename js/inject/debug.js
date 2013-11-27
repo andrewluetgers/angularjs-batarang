@@ -345,8 +345,15 @@ var inject = function () {
 
 					return tree;
 				},
-			
-				getStructure: function getStructure(moduleName) {
+
+				getStructure: function getStructure(moduleName, modules) {
+
+					moduleName = moduleName || $("*[ng-app]").attr("ng-app");
+
+					var initial = !modules;
+
+					modules = modules || {};
+
 					var mod = angular.module(moduleName),
 						q = mod._invokeQueue,
 
@@ -368,7 +375,8 @@ var inject = function () {
 							var code = fn+"";
 							var ret = code.substr('function '.length);
 							ret = ret.substr(0, ret.indexOf('('));
-							return ret || "moduleName.config(anonymousFunction"+(i? i+1 : "") + ")";
+
+							return ret || moduleName + ".config(anonymousFunction"+(i? i+1 : "") + ")";
 						},
 
 						obj = {};
@@ -382,6 +390,12 @@ var inject = function () {
 						type = (type == "$provide") ? v[1] : type;
 
 						switch(type) {
+
+							case "service":
+								break;
+
+							case "factory":
+								break;
 
 							case "$compileProvider":
 								type = "directive";
@@ -399,7 +413,10 @@ var inject = function () {
 								type = "config";
 								it = dep;
 								dep = getName(dep,i);
-								console.log(type, dep, args);
+								break;
+
+							case "value":
+								//console.log(type, dep, it, args);
 								break;
 
 							default:
@@ -411,16 +428,35 @@ var inject = function () {
 						obj[type][dep] = getArgs(it);
 					});
 
+					modules[moduleName] = obj;
+
+//					_.each(controllers, function(c) {
+//						controllersInfo[c[2][0]] = c[2][1].$inject || getArgs(c[2][1]);
+//						map.controllers = controllersInfo;
+//					});
+//
+//					if (injector.length) {
+//						map.inject = injector[0][2][0].$inject;
+//					}
+
 					if (mod.requires && mod.requires.length) {
 						obj.name = moduleName;
 						obj.deps = {};
 						_.each(mod.requires, function(req) {
-							obj.deps[req] = getStructure(req);
+							obj.deps[req] = getStructure(req, modules);
 							obj.deps[req].name = req;
 						});
 					}
 
-					return obj;
+					if (initial) {
+//						console.log("getStructure", obj, modules);
+						return {
+							structure: obj,
+							modules: modules
+						};
+					} else {
+						return obj;
+					}
 				},
 
 				enable: function () {

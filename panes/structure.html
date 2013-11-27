@@ -2,7 +2,8 @@
 	<div class="span12">
 		<h2>App Structure</h2>
 		<div class="well">
-			<bat-structure val="struct"></bat-structure>
+			<input ng-model="vals.modules.exclude" value="{{vals.modules.exclude}}">
+			<bat-structure modules="vals.modules"></bat-structure>
 		</div>
 	</div>
 </div>
