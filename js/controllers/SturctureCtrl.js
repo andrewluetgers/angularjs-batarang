@@ -1,9 +1,8 @@
 angular.module('panelApp').controller('StructureCtrl', function StructureCtrl($scope, appStructure) {
 
-	var struct = {};
-
 	$scope.vals = {
 		modules: {
+			struct: {},
 			clusters: {},
 			exclude: "tpl|template"
 		}
@@ -27,16 +26,16 @@ angular.module('panelApp').controller('StructureCtrl', function StructureCtrl($s
 	function update() {
 		appStructure.get(function (_struct) {
 			$scope.$apply(function () {
-				struct = _struct;
-				$scope.vals.modules.clusters = getModuleClusters(struct.modules, $scope.vals.modules.exclude);
+				$scope.vals.modules.struct = _struct;
+				$scope.vals.modules.clusters = getModuleClusters(_struct.modules, $scope.vals.modules.exclude);
 			});
 		});
 	}
 
 	$scope.$watch("vals.modules.exclude", function() {
-		$scope.vals.modules.clusters = getModuleClusters(struct.modules, $scope.vals.modules.exclude);
+		$scope.vals.modules.clusters = getModuleClusters($scope.vals.modules.struct.modules, $scope.vals.modules.exclude);
 		$scope.$apply();
-	})
+	 });
 
 	$scope.$on('poll2', update);
 	update();

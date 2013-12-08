@@ -7,150 +7,154 @@ angular.module('panelApp').directive('batStructure', function () {
 		},
 		link: function ($scope, element, attrs) {
 
-//			console.log(arguments);
-//
-//			var div = d3.select(element[0]);
-//
-//			var w = 600,
-//				h = 600,
-//				rx = w / 2,
-//				ry = h / 2,
-//				m0,
-//				rotate = 0;
-//
-//
-//			// generate element ids that do not have '$'
-//			var sanitize = function (key) {
-//				return key.replace('$', 'dollar');
-//			}
-//
-//
-//			// Instantiate and Style D3 Objects
-//			// --------------------------------
-//
-////			var cluster = d3.layout.cluster().
-////				size([360, ry - 120]).
-////				sort(function(a, b) { return d3.ascending(a.key, b.key); });
-////
-////			var bundle = d3.layout.bundle();
-////
-////			var line = d3.svg.line.radial().
-////				interpolate("bundle").
-////				tension(.85).
-////				radius(function(d) { return d.y; }).
-////				angle(function(d) { return d.x / 180 * Math.PI; });
-////
-//
-//
-//
-//			// based on http://maxdemarzi.com/2012/02/02/graph-visualization-and-neo4j-part-three/
-//			var r1 = 960 / 2,
-//				r0 = r1 - 120;
-//
-//			var fill = d3.scale.category20c();
-//
-//			var chord = d3.layout.chord()
-//				.padding(.04)
-//				.sortSubgroups(d3.descending)
-//				.sortChords(d3.descending);
-//
-//			var arc = d3.svg.arc()
-//				.innerRadius(r0)
-//				.outerRadius(r0 + 20);
-//
-////			var svg = div.append("svg:svg").
-////				attr("preserveAspectRatio", "xMinYMin meet").
-////				attr("viewBox", [0, 0, w, h].join(' ')).
-////				attr("height", h).
-////				append("svg:g").
-////				attr("transform", "translate(" + rx + "," + ry + ")");
-//
-//			var svg = div.append("svg")
-//				.attr("width", r1 * 2)
-//				.attr("height", r1 * 2)
-//				.append("g")
-//				.attr("transform", "translate(" + r1 + "," + r1 + ")");
-//
-//			/** Returns an event handler for fading a given chord group. */
-//			function fade(opacity) {
-//				return function(g, i) {
-//					svg.selectAll("g path.chord")
-//						.filter(function(d) {
-//							return d.source.index != i && d.target.index != i;
-//						})
-//						.transition()
-//						.style("opacity", opacity);
-//				};
-//			}
-//
-//			function draw(follows) {
-//				var indexByName = {},
-//					nameByIndex = {},
-//					matrix = [],
-//					n = 0;
-//
-//				function name(name) {
-//					return name
-//				}
-//
-//				// Compute a unique index for each name.
-//				follows.forEach(function(d) {
-//					d = name(d.name);
-//					if (!(d in indexByName)) {
-//						nameByIndex[n] = d;
-//						indexByName[d] = n++;
-//					}
-//				});
-//
-//				// Construct a square matrix counting relationships.
-//				follows.forEach(function(d) {
-//					var source = indexByName[name(d.name)],
-//						row = matrix[source];
-//					if (!row) {
-//						row = matrix[source] = [];
-//						for (var i = -1; ++i < n;) row[i] = 0;
-//					}
-//					d.follows.forEach(function(d) { row[indexByName[name(d)]]++; });
-//				});
-//
-//				chord.matrix(matrix);
-//
-//				var g = svg.selectAll("g.group")
-//					.data(chord.groups)
-//					.enter().append("g")
-//					.attr("class", "group");
-//
-//				g.append("path")
-//					.style("fill", function(d) { return fill(d.index); })
-//					.style("stroke", function(d) { return fill(d.index); })
-//					.attr("d", arc)
-//					.on("mouseover", fade(.1))
-//					.on("mouseout", fade(1));
-//
-//
-//				g.append("text")
-//					.each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
-//					.attr("dy", ".35em")
-//					.attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
-//					.attr("transform", function(d) {
-//						return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-//							+ "translate(" + (r0 + 26) + ")"
-//							+ (d.angle > Math.PI ? "rotate(180)" : "");
-//					})
-//					.text(function(d) { return nameByIndex[d.index]; });
-//
-//				svg.selectAll("path.chord")
-//					.data(chord.chords)
-//					.enter().append("path")
-//					.attr("class", "chord")
-//					.style("stroke", function(d) { return d3.rgb(fill(d.source.index)).darker(); })
-//					.style("fill", function(d) { return fill(d.source.index); })
-//					.attr("d", d3.svg.chord().radius(r0));
-//
-//			}
-//
-//			d3.json("follows", draw);
-//
+
+			var modules ={"struct":{"structure":{"config":{"myAppConfig":["$routeProvider","$locationProvider"]},"controller":{"AppCtrl":["$scope","$route","$routeParams","clientService","searchService","$rootScope","onTestEvent"]},"name":"clario","deps":{"templates-app":{"name":"templates-app","deps":{"clients/clients.tpl.html":{"name":"clients/clients.tpl.html"},"filters/filters.tpl.html":{"name":"filters/filters.tpl.html"},"grid/grid.cell.ico.tpl.html":{"name":"grid/grid.cell.ico.tpl.html"},"grid/grid.cell.link.tpl.html":{"name":"grid/grid.cell.link.tpl.html"},"grid/grid.cell.tpl.html":{"name":"grid/grid.cell.tpl.html"},"grid/grid.checkbox.cell.tpl.html":{"name":"grid/grid.checkbox.cell.tpl.html"},"grid/grid.checkbox.header.tpl.html":{"name":"grid/grid.checkbox.header.tpl.html"},"grid/grid.edit.cell.tpl.html":{"name":"grid/grid.edit.cell.tpl.html"},"grid/grid.header.cell.sort-alpha.tpl.html":{"name":"grid/grid.header.cell.sort-alpha.tpl.html"},"grid/grid.header.cell.sort-order.tpl.html":{"name":"grid/grid.header.cell.sort-order.tpl.html"},"grid/grid.header.row.tpl.html":{"name":"grid/grid.header.row.tpl.html"},"grid/grid.row.tpl.html":{"name":"grid/grid.row.tpl.html"},"info/info.tpl.html":{"name":"info/info.tpl.html"},"main/main.tpl.html":{"name":"main/main.tpl.html"},"nav/nav.tpl.html":{"name":"nav/nav.tpl.html"},"pathNav/pathNav.tpl.html":{"name":"pathNav/pathNav.tpl.html"},"results/results.tpl.html":{"name":"results/results.tpl.html"},"tags/tags.tpl.html":{"name":"tags/tags.tpl.html"},"toolbar/toolbar.tpl.html":{"name":"toolbar/toolbar.tpl.html"},"user/user.tpl.html":{"name":"user/user.tpl.html"}}},"templates-common":{"name":"templates-common","deps":{"simplePicker/simplePicker.tpl.html":{"name":"simplePicker/simplePicker.tpl.html"}}},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"clario.textBundle":{"value":{"clarioTextBundle":null},"name":"clario.textBundle","deps":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}}},"clario.events":{"config":{"clario.events.config(anonymousFunction)":["registerEvents"]},"name":"clario.events","deps":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}}},"clario.user":{"service":{"userService":["paths","$http","$T","onTestEvent","$rootScope"]},"directive":{"enforceUserAccessRestrictions":["$rootScope","$location","paths","userService","clientService","$T"]},"controller":{"userCtrl":["$scope","titleService","testEvent"]},"name":"clario.user","deps":{"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}}},"clario.main":{"controller":{"mainCtrl":["$scope","$location","$routeParams","titleService","clientService","searchService","testEvent"]},"name":"clario.main","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}}},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"filters":{"filter":{"momentFormat":[],"momentAgo":[],"log":[],"dump":[]},"name":"filters"},"ngGrid":{"name":"ngGrid","deps":{"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}}}},"modules":{"clario":{"config":{"myAppConfig":["$routeProvider","$locationProvider"]},"controller":{"AppCtrl":["$scope","$route","$routeParams","clientService","searchService","$rootScope","onTestEvent"]},"name":"clario","deps":{"templates-app":{"name":"templates-app","deps":{"clients/clients.tpl.html":{"name":"clients/clients.tpl.html"},"filters/filters.tpl.html":{"name":"filters/filters.tpl.html"},"grid/grid.cell.ico.tpl.html":{"name":"grid/grid.cell.ico.tpl.html"},"grid/grid.cell.link.tpl.html":{"name":"grid/grid.cell.link.tpl.html"},"grid/grid.cell.tpl.html":{"name":"grid/grid.cell.tpl.html"},"grid/grid.checkbox.cell.tpl.html":{"name":"grid/grid.checkbox.cell.tpl.html"},"grid/grid.checkbox.header.tpl.html":{"name":"grid/grid.checkbox.header.tpl.html"},"grid/grid.edit.cell.tpl.html":{"name":"grid/grid.edit.cell.tpl.html"},"grid/grid.header.cell.sort-alpha.tpl.html":{"name":"grid/grid.header.cell.sort-alpha.tpl.html"},"grid/grid.header.cell.sort-order.tpl.html":{"name":"grid/grid.header.cell.sort-order.tpl.html"},"grid/grid.header.row.tpl.html":{"name":"grid/grid.header.row.tpl.html"},"grid/grid.row.tpl.html":{"name":"grid/grid.row.tpl.html"},"info/info.tpl.html":{"name":"info/info.tpl.html"},"main/main.tpl.html":{"name":"main/main.tpl.html"},"nav/nav.tpl.html":{"name":"nav/nav.tpl.html"},"pathNav/pathNav.tpl.html":{"name":"pathNav/pathNav.tpl.html"},"results/results.tpl.html":{"name":"results/results.tpl.html"},"tags/tags.tpl.html":{"name":"tags/tags.tpl.html"},"toolbar/toolbar.tpl.html":{"name":"toolbar/toolbar.tpl.html"},"user/user.tpl.html":{"name":"user/user.tpl.html"}}},"templates-common":{"name":"templates-common","deps":{"simplePicker/simplePicker.tpl.html":{"name":"simplePicker/simplePicker.tpl.html"}}},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"clario.textBundle":{"value":{"clarioTextBundle":null},"name":"clario.textBundle","deps":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}}},"clario.events":{"config":{"clario.events.config(anonymousFunction)":["registerEvents"]},"name":"clario.events","deps":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}}},"clario.user":{"service":{"userService":["paths","$http","$T","onTestEvent","$rootScope"]},"directive":{"enforceUserAccessRestrictions":["$rootScope","$location","paths","userService","clientService","$T"]},"controller":{"userCtrl":["$scope","titleService","testEvent"]},"name":"clario.user","deps":{"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}}},"clario.main":{"controller":{"mainCtrl":["$scope","$location","$routeParams","titleService","clientService","searchService","testEvent"]},"name":"clario.main","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}}},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"filters":{"filter":{"momentFormat":[],"momentAgo":[],"log":[],"dump":[]},"name":"filters"},"ngGrid":{"name":"ngGrid","deps":{"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}}}},"templates-app":{"name":"templates-app","deps":{"clients/clients.tpl.html":{"name":"clients/clients.tpl.html"},"filters/filters.tpl.html":{"name":"filters/filters.tpl.html"},"grid/grid.cell.ico.tpl.html":{"name":"grid/grid.cell.ico.tpl.html"},"grid/grid.cell.link.tpl.html":{"name":"grid/grid.cell.link.tpl.html"},"grid/grid.cell.tpl.html":{"name":"grid/grid.cell.tpl.html"},"grid/grid.checkbox.cell.tpl.html":{"name":"grid/grid.checkbox.cell.tpl.html"},"grid/grid.checkbox.header.tpl.html":{"name":"grid/grid.checkbox.header.tpl.html"},"grid/grid.edit.cell.tpl.html":{"name":"grid/grid.edit.cell.tpl.html"},"grid/grid.header.cell.sort-alpha.tpl.html":{"name":"grid/grid.header.cell.sort-alpha.tpl.html"},"grid/grid.header.cell.sort-order.tpl.html":{"name":"grid/grid.header.cell.sort-order.tpl.html"},"grid/grid.header.row.tpl.html":{"name":"grid/grid.header.row.tpl.html"},"grid/grid.row.tpl.html":{"name":"grid/grid.row.tpl.html"},"info/info.tpl.html":{"name":"info/info.tpl.html"},"main/main.tpl.html":{"name":"main/main.tpl.html"},"nav/nav.tpl.html":{"name":"nav/nav.tpl.html"},"pathNav/pathNav.tpl.html":{"name":"pathNav/pathNav.tpl.html"},"results/results.tpl.html":{"name":"results/results.tpl.html"},"tags/tags.tpl.html":{"name":"tags/tags.tpl.html"},"toolbar/toolbar.tpl.html":{"name":"toolbar/toolbar.tpl.html"},"user/user.tpl.html":{"name":"user/user.tpl.html"}}},"clients/clients.tpl.html":{"name":"clients/clients.tpl.html"},"filters/filters.tpl.html":{"name":"filters/filters.tpl.html"},"grid/grid.cell.ico.tpl.html":{"name":"grid/grid.cell.ico.tpl.html"},"grid/grid.cell.link.tpl.html":{"name":"grid/grid.cell.link.tpl.html"},"grid/grid.cell.tpl.html":{"name":"grid/grid.cell.tpl.html"},"grid/grid.checkbox.cell.tpl.html":{"name":"grid/grid.checkbox.cell.tpl.html"},"grid/grid.checkbox.header.tpl.html":{"name":"grid/grid.checkbox.header.tpl.html"},"grid/grid.edit.cell.tpl.html":{"name":"grid/grid.edit.cell.tpl.html"},"grid/grid.header.cell.sort-alpha.tpl.html":{"name":"grid/grid.header.cell.sort-alpha.tpl.html"},"grid/grid.header.cell.sort-order.tpl.html":{"name":"grid/grid.header.cell.sort-order.tpl.html"},"grid/grid.header.row.tpl.html":{"name":"grid/grid.header.row.tpl.html"},"grid/grid.row.tpl.html":{"name":"grid/grid.row.tpl.html"},"info/info.tpl.html":{"name":"info/info.tpl.html"},"main/main.tpl.html":{"name":"main/main.tpl.html"},"nav/nav.tpl.html":{"name":"nav/nav.tpl.html"},"pathNav/pathNav.tpl.html":{"name":"pathNav/pathNav.tpl.html"},"results/results.tpl.html":{"name":"results/results.tpl.html"},"tags/tags.tpl.html":{"name":"tags/tags.tpl.html"},"toolbar/toolbar.tpl.html":{"name":"toolbar/toolbar.tpl.html"},"user/user.tpl.html":{"name":"user/user.tpl.html"},"templates-common":{"name":"templates-common","deps":{"simplePicker/simplePicker.tpl.html":{"name":"simplePicker/simplePicker.tpl.html"}}},"simplePicker/simplePicker.tpl.html":{"name":"simplePicker/simplePicker.tpl.html"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"clario.textBundle":{"value":{"clarioTextBundle":null},"name":"clario.textBundle","deps":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}}},"clario.events":{"config":{"clario.events.config(anonymousFunction)":["registerEvents"]},"name":"clario.events","deps":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}}},"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"},"clario.user":{"service":{"userService":["paths","$http","$T","onTestEvent","$rootScope"]},"directive":{"enforceUserAccessRestrictions":["$rootScope","$location","paths","userService","clientService","$T"]},"controller":{"userCtrl":["$scope","titleService","testEvent"]},"name":"clario.user","deps":{"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}}},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.main":{"controller":{"mainCtrl":["$scope","$location","$routeParams","titleService","clientService","searchService","testEvent"]},"name":"clario.main","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}}},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"filters":{"filter":{"momentFormat":[],"momentAgo":[],"log":[],"dump":[]},"name":"filters"},"ngGrid":{"name":"ngGrid","deps":{"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}},"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}},"clusters":{"clario":{"clario":{"config":{"myAppConfig":["$routeProvider","$locationProvider"]},"controller":{"AppCtrl":["$scope","$route","$routeParams","clientService","searchService","$rootScope","onTestEvent"]},"name":"clario","deps":{"templates-app":{"name":"templates-app","deps":{"clients/clients.tpl.html":{"name":"clients/clients.tpl.html"},"filters/filters.tpl.html":{"name":"filters/filters.tpl.html"},"grid/grid.cell.ico.tpl.html":{"name":"grid/grid.cell.ico.tpl.html"},"grid/grid.cell.link.tpl.html":{"name":"grid/grid.cell.link.tpl.html"},"grid/grid.cell.tpl.html":{"name":"grid/grid.cell.tpl.html"},"grid/grid.checkbox.cell.tpl.html":{"name":"grid/grid.checkbox.cell.tpl.html"},"grid/grid.checkbox.header.tpl.html":{"name":"grid/grid.checkbox.header.tpl.html"},"grid/grid.edit.cell.tpl.html":{"name":"grid/grid.edit.cell.tpl.html"},"grid/grid.header.cell.sort-alpha.tpl.html":{"name":"grid/grid.header.cell.sort-alpha.tpl.html"},"grid/grid.header.cell.sort-order.tpl.html":{"name":"grid/grid.header.cell.sort-order.tpl.html"},"grid/grid.header.row.tpl.html":{"name":"grid/grid.header.row.tpl.html"},"grid/grid.row.tpl.html":{"name":"grid/grid.row.tpl.html"},"info/info.tpl.html":{"name":"info/info.tpl.html"},"main/main.tpl.html":{"name":"main/main.tpl.html"},"nav/nav.tpl.html":{"name":"nav/nav.tpl.html"},"pathNav/pathNav.tpl.html":{"name":"pathNav/pathNav.tpl.html"},"results/results.tpl.html":{"name":"results/results.tpl.html"},"tags/tags.tpl.html":{"name":"tags/tags.tpl.html"},"toolbar/toolbar.tpl.html":{"name":"toolbar/toolbar.tpl.html"},"user/user.tpl.html":{"name":"user/user.tpl.html"}}},"templates-common":{"name":"templates-common","deps":{"simplePicker/simplePicker.tpl.html":{"name":"simplePicker/simplePicker.tpl.html"}}},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"clario.textBundle":{"value":{"clarioTextBundle":null},"name":"clario.textBundle","deps":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}}},"clario.events":{"config":{"clario.events.config(anonymousFunction)":["registerEvents"]},"name":"clario.events","deps":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}}},"clario.user":{"service":{"userService":["paths","$http","$T","onTestEvent","$rootScope"]},"directive":{"enforceUserAccessRestrictions":["$rootScope","$location","paths","userService","clientService","$T"]},"controller":{"userCtrl":["$scope","titleService","testEvent"]},"name":"clario.user","deps":{"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}}},"clario.main":{"controller":{"mainCtrl":["$scope","$location","$routeParams","titleService","clientService","searchService","testEvent"]},"name":"clario.main","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}}},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"filters":{"filter":{"momentFormat":[],"momentAgo":[],"log":[],"dump":[]},"name":"filters"},"ngGrid":{"name":"ngGrid","deps":{"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}}}},"clario.textBundle":{"value":{"clarioTextBundle":null},"name":"clario.textBundle","deps":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}}},"clario.events":{"config":{"clario.events.config(anonymousFunction)":["registerEvents"]},"name":"clario.events","deps":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}}},"clario.user":{"service":{"userService":["paths","$http","$T","onTestEvent","$rootScope"]},"directive":{"enforceUserAccessRestrictions":["$rootScope","$location","paths","userService","clientService","$T"]},"controller":{"userCtrl":["$scope","titleService","testEvent"]},"name":"clario.user","deps":{"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"},"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}}},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.main":{"controller":{"mainCtrl":["$scope","$location","$routeParams","titleService","clientService","searchService","testEvent"]},"name":"clario.main","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}}},"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.toolbar":{"controller":{"toolbarCtrl":["$rootScope","$scope","$routeParams","$location","userService","clientService","searchService","updateUrl"]},"name":"clario.toolbar","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"},"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}},"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.url":{"factory":{"updateUrl":["$location","clientService"]},"name":"clario.url","deps":{"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}},"clario.filters":{"controller":{"filterCtrl":["$scope","$routeParams","searchService"]},"name":"clario.filters","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}},"clario.results":{"controller":{"resultsCtrl":["$scope","searchService"]},"name":"clario.results","deps":{"clario.search":{"service":{"searchService":["$http","$routeParams","clientService","paths","testEvent","$rootScope"]},"name":"clario.search","deps":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"},"clario.paths":{"value":{"paths":null},"name":"clario.paths"},"clario.clients":{"service":{"clientService":["paths","$http"]},"name":"clario.clients"}}}}}},"ngText":{"ngText":{"factory":{"$T":["ngTextConfig"]},"value":{"ngTextConfig":null},"name":"ngText"}},"eventRegistry":{"eventRegistry":{"config":{"eventRegistry.config(anonymousFunction)":["$provide"]},"name":"eventRegistry"}},"titleService":{"titleService":{"factory":{"titleService":["$document"]},"name":"titleService"}},"simpleUtils":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}},"simplePicker":{"simplePicker":{"directive":{"simplePicker":["$timeout"]},"name":"simplePicker","deps":{"simpleUtils":{"directive":{"preventDefault":["scope","element","attrs"]},"name":"simpleUtils"}}}},"common":{"common.navigation":{"directive":{"backButton":["scope","element","attrs"]},"name":"common.navigation"}},"filters":{"filters":{"filter":{"momentFormat":[],"momentAgo":[],"log":[],"dump":[]},"name":"filters"}},"ngGrid":{"ngGrid":{"name":"ngGrid","deps":{"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}},"ngGrid.services":{"factory":{"$domUtilityService":["$utils"],"$sortService":["$parse"],"$utilityService":["$parse"]},"name":"ngGrid.services"},"ngGrid.directives":{"directive":{"ngCellHasFocus":["domUtilityService"],"ngCellText":["scope","elm"],"ngCell":["$compile","domUtilityService"],"ngEditCellIf":["e","a","transclude"],"ngGridFooter":["$compile","$templateCache"],"ngGridMenu":["$compile","$templateCache"],"ngGrid":["$compile","$filter","$templateCache","sortService","domUtilityService","$utils","$timeout","$parse","$http","$q"],"ngHeaderCell":["$compile"],"ngInput":["scope","elm","attrs","ngModel"],"ngRow":["$compile","domUtilityService","$templateCache"],"ngViewport":["$scope","elm"]},"name":"ngGrid.directives"},"ngGrid.filters":{"filter":{"checkmark":[],"ngColumns":[]},"name":"ngGrid.filters"}}},"exclude":"tpl|template"};
+
+			var w = 600,
+				h = 600,
+				rx = w / 2,
+				ry = h / 2,
+				m0,
+				rotate = 0;
+
+
+			// generate element ids that do not have '$'
+			var sanitize = function (key) {
+				return key.replace('$', 'dollar');
+			}
+
+
+			// Instantiate and Style D3 Objects
+			// --------------------------------
+
+			//			var cluster = d3.layout.cluster().
+			//				size([360, ry - 120]).
+			//				sort(function(a, b) { return d3.ascending(a.key, b.key); });
+			//
+			//			var bundle = d3.layout.bundle();
+			//
+			//			var line = d3.svg.line.radial().
+			//				interpolate("bundle").
+			//				tension(.85).
+			//				radius(function(d) { return d.y; }).
+			//				angle(function(d) { return d.x / 180 * Math.PI; });
+			//
+
+
+
+			// based on http://maxdemarzi.com/2012/02/02/graph-visualization-and-neo4j-part-three/
+			var r1 = 960 / 2,
+				r0 = r1 - 120;
+
+			var fill = d3.scale.category20c();
+
+			var chord = d3.layout.chord()
+				.padding(.04)
+				.sortSubgroups(d3.descending)
+				.sortChords(d3.descending);
+
+			var arc = d3.svg.arc()
+				.innerRadius(r0)
+				.outerRadius(r0 + 20);
+
+			//			var svg = div.append("svg:svg").
+			//				attr("preserveAspectRatio", "xMinYMin meet").
+			//				attr("viewBox", [0, 0, w, h].join(' ')).
+			//				attr("height", h).
+			//				append("svg:g").
+			//				attr("transform", "translate(" + rx + "," + ry + ")");
+
+			var svg = d3.select(element[0]).append("svg")
+				.attr("width", r1 * 2)
+				.attr("height", r1 * 2)
+				.append("g")
+				.attr("transform", "translate(" + r1 + "," + r1 + ")");
+
+
+			/** Returns an event handler for fading a given chord group. */
+			function fade(opacity) {
+				return function(g, i) {
+					svg.selectAll("g path.chord")
+						.filter(function(d) {
+							return d.source.index != i && d.target.index != i;
+						})
+						.transition()
+						.style("opacity", opacity);
+				};
+			}
+
+			function draw(modules) {
+				var indexByName = {},
+					nameByIndex = {},
+					matrix = [],
+					n = 0;
+
+				// Compute a unique index for each name.
+				_.each(modules, function(m, name) {
+					if (!(name in indexByName)) {
+						nameByIndex[n] = name;
+						indexByName[name] = n++;
+					}
+				});
+				console.log(indexByName, nameByIndex);
+
+				// Construct a square matrix counting relationships.
+				_.each(modules, function(m, name) {
+					var source = indexByName[name],
+						row = matrix[source];
+					if (!row) {
+						row = matrix[source] = [];
+						for (var i = 0; i < n; i++) {
+							row[i] = 0;
+						}
+					}
+					_.each(m.deps, function(d, dName) {
+						console.log(dName);
+						row[indexByName[dName]]++;
+					});
+				});
+
+				//console.log(matrix);
+
+				chord.matrix(matrix);
+
+				var g = svg.selectAll("g.group")
+					.data(chord.groups)
+					.enter().append("g")
+					.attr("class", "group");
+
+				g.append("path")
+					.style("fill", function(d) {
+						console.log("fill", d, d.index);
+						return fill(d.index);
+					})
+					.style("stroke", function(d) { return fill(d.index); })
+					.attr("d", arc)
+					.on("mouseover", fade(.1))
+					.on("mouseout", fade(1));
+
+
+				g.append("text")
+					.each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+					.attr("dy", ".35em")
+					.attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+					.attr("transform", function(d) {
+						return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+							+ "translate(" + (r0 + 26) + ")"
+							+ (d.angle > Math.PI ? "rotate(180)" : "");
+					})
+					.text(function(d) { return nameByIndex[d.index]; });
+
+				svg.selectAll("path.chord")
+					.data(chord.chords)
+					.enter().append("path")
+					.attr("class", "chord")
+					.style("stroke", function(d) { return d3.rgb(fill(d.source.index)).darker(); })
+					.style("fill", function(d) { return fill(d.source.index); })
+					.attr("d", d3.svg.chord().radius(r0));
+			}
+
+//			console.log(modules.struct.modules);
 
 
 
@@ -158,11 +162,12 @@ angular.module('panelApp').directive('batStructure', function () {
 
 			// Render the data whenever "val" changes
 			// --------------------------------------
-			$scope.$watch('modules.clusters', function (n, o) {
-				console.log(n, o);
-				var val = JSON.stringify(n);
-				$(element).text((i++) + val);
+			$scope.$watch('modules.struct.modules', function (n, o) {
+//				console.log(n, o);
+//				var val = JSON.stringify($scope.modules);
+//				$(element).text((i++) + val);
 //				alert("$scope.modules.clusters updated");
+				draw(n);
 			}, true);
 
 
